@@ -3,7 +3,6 @@ import pandas as pd
 import csv
 from datetime import datetime
 import os
-import matplotlib.pyplot as plt
 
 CSV_FILE = "workout_log.csv"
 
@@ -76,25 +75,8 @@ with tabs[1]:
         st.success("All workout data has been cleared!")
         st.rerun()  # Reload the app
 
-# Tab 3: Progress Charts
-with tabs[2]:
-    st.subheader("📈 Progress Over Time")
-    if data.empty:
-        st.info("No data to chart.")
-    else:
-        exercise_selected = st.selectbox("Select Exercise", sorted(data["Exercise"].unique()))
-        df = data[data["Exercise"] == exercise_selected]
-
-        fig, ax = plt.subplots()
-        ax.plot(df["Date"], df["Weight (kg)"], marker="o", label="Weight (kg)")
-        ax.set_title(f"Progress for {exercise_selected}")
-        ax.set_xlabel("Date")
-        ax.set_ylabel("Weight (kg)")
-        ax.grid(True)
-        st.pyplot(fig)
-
 # Tab 4: Personal Bests
-with tabs[3]:
+with tabs[2]:
     st.subheader("🏆 Personal Bests")
     if data.empty:
         st.info("No data available.")
